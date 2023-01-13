@@ -3,7 +3,6 @@
  *
  * All rights reserved.
  */
-
 package com.kuflow.engine.samples.worker;
 
 import java.net.InetAddress;

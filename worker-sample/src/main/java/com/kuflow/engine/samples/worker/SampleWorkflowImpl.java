@@ -67,6 +67,7 @@ public class SampleWorkflowImpl implements SampleWorkflow {
 
         this.createTaskMyRobotResults(request);
 
+        
         CompleteProcessResponse completeProcess = this.completeProcess(request.getProcessId());
 
         LOGGER.info("Process {} finished", request.getProcessId());
