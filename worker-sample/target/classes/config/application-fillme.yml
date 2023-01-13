@@ -1,0 +1,123 @@
+# ===================================================================
+# PLEASE COMPLETE ALL CONFIGURATIONS BEFORE STARTING THE WORKER
+# ===================================================================
+
+kuflow:
+  api:
+
+    # ID of the APPLICATION configured in KUFLOW.
+    # Get it in "Application details" in the Kuflow APP.
+    client-id: "e50c0698-6a31-4b62-b9a7-c162148b0e27"
+
+    # TOKEN of the APPLICATION configured in KUFLOW.
+    # Get it in "Application details" in the Kuflow APP.
+    client-secret: 3ze:XGo22y6/S&Y
+
+application:
+  temporal:
+    # Temporal Namespace. Get it in "Application details" in the KUFLOW APP.
+    namespace: "tenant-b8809892-db44-4950-9ad4-70f9ffdf893f"
+
+    # Temporal Queue. Configure it in the "Process definition" in the KUFLOW APP.
+    kuflow-queue: "UIVisionQueue"
+
+    mutual-tls:
+
+      # Client certificate
+      # Get it in "Application details" in the KUFLOW APP.
+      cert-data: |
+        -----BEGIN CERTIFICATE-----
+        MIIEnDCCAoSgAwIBAgIQSsAbwEMHxqFTPX3ayvsijTANBgkqhkiG9w0BAQsFADA3
+        MQswCQYDVQQGEwJFUzEUMBIGA1UEChMLS3VGbG93IFMuTC4xEjAQBgNVBAMTCUt1
+        RmxvdyBDQTAeFw0yMjA3MDQwNzMxNTNaFw0yNzA3MDQwNzMxNTNaMD0xOzA5BgNV
+        BAMTMkFwcGxpY2F0aW9uIC0gZTUwYzA2OTgtNmEzMS00YjYyLWI5YTctYzE2MjE0
+        OGIwZTI3MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx0gYKSgbTEp3
+        m3QRkfaL4QxQquuleogxBJkrPcA+MS29pulO3oim5GfN9Mbp3eSzbLsYNQFcHQaB
+        2QXdXO3hMjoxajpuoZDbOjH97QYAsQNYpPKamb14AtoVIBOTdG+UICHqBQ7597Mj
+        /apFUneFMdPC2FtNSCGzq9uANSfUuEjLpBoDpY5WjZObzADfeT5f18xBZ3+InlLq
+        lN4KduITGMaY2Qb867xO5qG/devfWVmS7mbgQnX84NFDNB+2yv5cnhcFjcuHeDJw
+        haljCYaS4totQYM89Gj8krJ9fPd23+IIthOBfoqQj67W3upZckKE+uTCpwFsmVR6
+        eHI2t8vcKQIDAQABo4GdMIGaMA4GA1UdDwEB/wQEAwIFoDAMBgNVHRMBAf8EAjAA
+        MCsGA1UdIwQkMCKAIMBGByIIqK9Gl7ww/OgEG0dAymj4KukoZMbvAWzkqNEvME0G
+        A1UdEQRGMESkQjBAMT4wPAYFK80sAQEMM2t1OmFwcGxpY2F0aW9uL2U1MGMwNjk4
+        LTZhMzEtNGI2Mi1iOWE3LWMxNjIxNDhiMGUyNzANBgkqhkiG9w0BAQsFAAOCAgEA
+        A5BQ+U9eErRtYPbHlZlq9aOFZXExTdefljilmFJYrUqtmMGmec023A8bBOR1eW0f
+        zAVCzNje9zmegnjmOIBX2Ljr5/ZDmUAk9njy3xV9s6EwGGqCahiw/23PpDtl7orN
+        8DgfOWyi+wuzY00CYxOE+BCGBfbNx5c9m9MqDCL523yxwqNLTLj7APS3CYklclUW
+        SqiL7UiUTd+zVd+WKiakVspcJ4D5XKp156AY4GT5NorJKuhP9Nml7WzgCvJETEsh
+        gcsxuKG3xYYXoTIvsJUG2gK42f/PZEHT0pAGAJTAHjKbrysXG06SjWf5o/3XYPHj
+        y4GcqTcYxLTL1J6ICuxkuHiyKwQJN4YBwY9OrmBlCOC0R/6tcRGI0foQL/0zcPxO
+        32satGBBwVbKemqzF/DdY/ZgnmEzAwjl8RBz/H+nu40ixitz8EIRC1SAJXXVDqSq
+        IYQq4TptUchttiW6x+R9c4lgJFrDZ8rwFsb8zKW6539XHYSekd69jz/Er+kdNmFd
+        5D1GImE0k7KHINXg1ygK+menh+Bmbj4zShprQFaCklxr7mA1BsO2Ery/zFtZJyJy
+        65W9kkZlfn9rb5VS7/OcJIKYtjf9y+pJC3avdP4UhDyI/YS6s2FcWfcjp9GG5GhJ
+        fuTDI+AeqqK7pe3u/Yk0V2+n7KpDhADX9U9cUo9fBrE=
+        -----END CERTIFICATE-----
+
+      # Private key
+      # Get it in "Application details" in the KUFLOW APP.
+      # IMPORTANT: This example works with PKCS8, so ensure PKCS8 is selected
+      #            when you generate the certificates in the KUFLOW App
+      key-data: |
+        -----BEGIN PRIVATE KEY-----
+        MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDHSBgpKBtMSneb
+        dBGR9ovhDFCq66V6iDEEmSs9wD4xLb2m6U7eiKbkZ830xund5LNsuxg1AVwdBoHZ
+        Bd1c7eEyOjFqOm6hkNs6Mf3tBgCxA1ik8pqZvXgC2hUgE5N0b5QgIeoFDvn3syP9
+        qkVSd4Ux08LYW01IIbOr24A1J9S4SMukGgOljlaNk5vMAN95Pl/XzEFnf4ieUuqU
+        3gp24hMYxpjZBvzrvE7mob91699ZWZLuZuBCdfzg0UM0H7bK/lyeFwWNy4d4MnCF
+        qWMJhpLi2i1Bgzz0aPySsn1893bf4gi2E4F+ipCPrtbe6llyQoT65MKnAWyZVHp4
+        cja3y9wpAgMBAAECggEAEpOJvgdpMQXFi8IIc8Hm5OP6Ho6wGqGYqSgyh9N0cK7l
+        /YnE0nlsTkEPabSDny23HIj9vw4pBSMixkVVzth1XDJgwhlfj/PB/dUkaZx8QsPw
+        NtMPHorzBZgI7Vgp0AopJYwnxZAxdLm4HoipZOAzlDMcWAD9zZ4noprn4vybJ5Dm
+        L8lhvfPUsJbWz0IjNbn4WzYGDA2gjgyUDAvHw/J2csZcnZGjU8sJIOxN3QKXFgnn
+        2i/E4za/1e10tr4W8kpXYsbR77Tj1OZ+TcC2/6mn73y/mnqP3IJjZSA8JfMozyL6
+        RDbDvb4vgZryS7T74iXv+hMi18WTcRV6p7Z+5P/vwQKBgQDH/y2ZfZq6mLTZq6Ke
+        WiGTwUe6huhbDlyYGu0f1r508aU71qjeCYRbnRrRy7VVmrj7K6YS3r/pOl7JkeL6
+        WTLiGhVPIPCZnOIUwO7Jz/LMktdqbpPdxkyYi/ZWuVaQFzwZLWLVxTWBdgLXig47
+        ue9Sbdj6/HnPpdoTYn44C254wQKBgQD/FaYnwTrmCAef7EslsgsNa4VT9HDUr5mK
+        oOCrskTc6R/0IV8izKS6MFRdIiwEGGBuWu9QL0nFvgRH//8Tfud1SyjpHOSWJhmQ
+        ou1IMSHaY6gDUjvsH33RSVo8ONabZUZ52k7w2wrTPOphtNdFt7Q02ZcjDE04fR9C
+        wx9bNDSVaQKBgH3ldagEuG00CcxoTgMOy8o+Rk/18ri3LrSVZqW/Qb9OCmzDsSOs
+        rAQbvrFIYcsUjdOW44FHdVl05AxRaKedlPld4AIiwzJ/3pWf6fFilP4Qhcg6+ZwG
+        41q36IcpPoOQDMXwmyHkdc0cI6fZASK55hxmh8tfObLsPX4sZzYShCVBAoGANoK0
+        2CgF4yRyJK3FPU/35q1Ed7Vz6y9/W02X1XkqGB9FcdEz2GbtCNDNJn3n9BQVf1+1
+        ZmhElppNpelB5DOpWLpwCqje/Gs16V+330aImnfTbqpDHel45KGNQ/NNgTW6Qs3x
+        Mq1Meem5mJmhq0dfni+liZrWYazzYjv6Vm4okokCgYAa6lvGLgpEkeDJxv9tG8OO
+        cs1weCo1prkmOeB8ysLUQDpAFHBIQzIJV7qEMCkdPnK8DdecISkiWIa89GCorlcI
+        RGOnPiOiEtgHYH/FJfP4zN7G8f2oE7Z+j3UD8mr+9miTOeF7hbFQeuPskOG/NDoT
+        fTbl67vLa4tyGgGz5SNMlA==
+        -----END PRIVATE KEY-----
+
+      # KUFLOW Certification Authority (CA) of the certificates issued in KUFLOW
+      ca-data: |
+        -----BEGIN CERTIFICATE-----
+        MIIFRjCCAy6gAwIBAgIQc7f/lTiGhaHPQeNBbanfeDANBgkqhkiG9w0BAQsFADA3
+        MQswCQYDVQQGEwJFUzEUMBIGA1UEChMLS3VGbG93IFMuTC4xEjAQBgNVBAMTCUt1
+        RmxvdyBDQTAeFw0yMTExMDMwOTM1MzRaFw00MTExMDMwOTM1MzRaMDcxCzAJBgNV
+        BAYTAkVTMRQwEgYDVQQKEwtLdUZsb3cgUy5MLjESMBAGA1UEAxMJS3VGbG93IENB
+        MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAzX0wIVK6kVu5ykpC3ki9
+        JT5JIypjn2WBM+XYn/kDDJEDdps7o0REGEIHy5JrR3QGhlvIWjahCRF76uM+yt29
+        L31kO6Mu3AxCHYzcGayE+HHwtj8g9Rf8E4zRmOanCeNUZLNCjm/CVFwAs0pBS9/p
+        nJDlnCitavOEArEC9yinO5R0biQzXn2fpffgfyFXzw65StffHCn+Hnyn3JJLha5/
+        pqmOZ5b6IHTwdSajbBt0gzfi2XebjfG+nLrxhl+C7ghtMc80zlBh8fS+ZJinF2TV
+        EQoJHduTJRyWffkSqCLPiB7E4MZYJe9wsjeagjlQzL3oTVf5xbh++M0M581Gy3Aa
+        sGyw/MGseCtiHv68VWViYLskcpBRw0fwqTT0aRaTRBT/emPYDPdeyWY1PRfWWV33
+        kYkhdsLDg4LaK1NOeHLeX0/UZpre43/tWSwrvhFzNcCt0CYEcdS6c7+cd0YR5VG5
+        qNNWTB1Bp9w+sYJAzfW0zBeBiHKb/yBPGoG8q7/MaWvipEa5CmfMTRV+pRb7DiHZ
+        rTQcZcpXV5RffXG5zGCYVjiyBpfD7zaWEoWXo3KNWEZKE2De5fzTXgGprdvKnmGU
+        WaeJnZuG9Z8HeKQZ/4qhLrWrXcMuXmdioatSf/TflKFsfkcCpKMLrY9pZ6X+sl+n
+        sO+ChIYtn7uoXGJMBQf4NkcCAwEAAaNOMEwwDgYDVR0PAQH/BAQDAgKkMA8GA1Ud
+        EwEB/wQFMAMBAf8wKQYDVR0OBCIEIMBGByIIqK9Gl7ww/OgEG0dAymj4KukoZMbv
+        AWzkqNEvMA0GCSqGSIb3DQEBCwUAA4ICAQAARDbBUG7+Vna7YaTipc7ilLwnS0fY
+        n0f8+37UVTzeRaJrqCqruSgUhQ9Lj9pyprj73u/g/gkU+iy4MHHW0ZCM8xbbqqcm
+        0rviYFusk8UutBXCFSKp0WHKC8RULGGIB8+Zvcq2ViH0pQwfJtY1Ifpoi/9tTuWb
+        Kwhe0pM/VyEJHznH0ChfO/8SY96jQqMZ0vo5g5V7rwy0fbdXk9CB12/0/pEc1/dC
+        iQ95RyfjcN9SEGRPKbrrm3HkOTRxPQlugKH77LHT35XOJ17z93AeA+r2ub5LZgfQ
+        jkVtbZOVW01j8rvHiSOI+nY0ETgFmH2aGb5Qco9zH4FPzjzwz3GYlzJsv0Uutj5B
+        ZFBtk91J4ec1y/4wU4ljIk9SgMeRTAGocY/asQ8uiE1Zi/dNu5i0kF0vmtXyltne
+        mPwLZ8KmYSAB0Me06qxkFFM/lxTu/GUczto5UgJzMU9yliXSfTm5oxEat5kvvFgf
+        sfYAZV9zjBe9DANfhDjcGP8lWuk2uHd/nPUcWD18B3pWqBuVQ7XyE2cpDgphNsgJ
+        nCB1vZ+is1seIY9NUBWXfJjzjXPBjf5lanPEFJjcsc12BrrAw1vmXa+t3d6wF0hj
+        tTh1u3ohM5yGEg7M1beZVXu4TmWiYhGpS9y9kT6Wp+Uzb2/J5A92PCHrT77+7Fcp
+        OyxvHLMCIfAhGw==
+        -----END CERTIFICATE-----
