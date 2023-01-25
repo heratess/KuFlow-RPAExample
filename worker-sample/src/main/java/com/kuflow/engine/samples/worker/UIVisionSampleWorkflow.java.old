@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-present KuFlow S.L.
+ * Copyright (c) 2023-present KuFlow S.L.
  *
  * All rights reserved.
  */
@@ -11,7 +11,9 @@ import io.temporal.workflow.WorkflowInterface;
 import io.temporal.workflow.WorkflowMethod;
 
 @WorkflowInterface
-public interface SampleWorkflow {
-    @WorkflowMethod(name = "UIVisionSampleWorkflow")
+public interface UIVisionSampleWorkflow {
+    String WORKFLOW_NAME = UIVisionSampleWorkflow.class.getSimpleName();
+
+    @WorkflowMethod
     WorkflowResponse runWorkflow(WorkflowRequest request);
 }

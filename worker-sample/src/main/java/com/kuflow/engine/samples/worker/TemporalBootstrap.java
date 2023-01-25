@@ -6,7 +6,6 @@
 
 package com.kuflow.engine.samples.worker;
 
-import com.kuflow.engine.samples.worker.workflow.UIVisionSampleWorkflowImpl;
 import com.kuflow.temporal.activity.kuflow.KuFlowAsyncActivities;
 import com.kuflow.temporal.activity.kuflow.KuFlowSyncActivities;
 import io.temporal.worker.Worker;
@@ -69,11 +68,10 @@ public class TemporalBootstrap implements InitializingBean, DisposableBean {
 
     private void startWorkers() {
         Worker worker = this.factory.newWorker(this.applicationProperties.getTemporal().getKuflowQueue());
-        //worker.registerWorkflowImplementationTypes(SampleWorkflowImpl.class);
+        worker.registerWorkflowImplementationTypes(SampleWorkflowImpl.class);
         worker.registerActivitiesImplementations(this.kuFlowSyncActivities);
         worker.registerActivitiesImplementations(this.kuFlowAsyncActivities);
         //Add 4
-        worker.registerWorkflowImplementationTypes(UIVisionSampleWorkflowImpl.class);
         worker.registerActivitiesImplementations(this.uiVisionActivities);
 
         this.factory.start();

@@ -3,7 +3,7 @@
  *
  * All rights reserved.
  */
-package com.kuflow.engine.samples.worker.workflow;
+package com.kuflow.engine.samples.worker;
 
 import com.kuflow.temporal.common.model.WorkflowRequest;
 import com.kuflow.temporal.common.model.WorkflowResponse;

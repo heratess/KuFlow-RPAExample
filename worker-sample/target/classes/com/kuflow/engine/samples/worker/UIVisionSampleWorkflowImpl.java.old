@@ -4,7 +4,7 @@
  * All rights reserved.
  */
 
-package com.kuflow.engine.samples.worker.workflow;
+package com.kuflow.engine.samples.worker;
 
 import com.kuflow.rest.model.Task;
 import com.kuflow.rest.model.TaskDefinitionSummary;
@@ -27,8 +27,6 @@ import java.util.UUID;
 import org.slf4j.Logger;
 
 //este es el que hay ejecutar.
-
-
 public class UIVisionSampleWorkflowImpl implements UIVisionSampleWorkflow {
     private static final Logger LOGGER = Workflow.getLogger(UIVisionSampleWorkflow.class);
 

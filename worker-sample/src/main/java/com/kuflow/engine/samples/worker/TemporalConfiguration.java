@@ -77,6 +77,7 @@ public class TemporalConfiguration {
     }
 
     private SslContext createSslContext() {
+        //remove MutualTlsProperties mutualTls = this.applicationProperties.getTemporal().getMutualTls()
         //change to : 
         com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties.TemporalProperties.MutualTlsProperties mutualTls = this.sampleEngineWorkerUiVisionProperties.getTemporal().getMutualTls();
 

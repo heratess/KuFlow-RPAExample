@@ -2,19 +2,8 @@
   "groups": [
     {
       "name": "application",
-      "type": "com.kuflow.engine.samples.worker.ApplicationProperties",
-      "sourceType": "com.kuflow.engine.samples.worker.ApplicationProperties"
-    },
-    {
-      "name": "application",
       "type": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties",
       "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties"
-    },
-    {
-      "name": "application.temporal",
-      "type": "com.kuflow.engine.samples.worker.ApplicationProperties$TemporalProperties",
-      "sourceType": "com.kuflow.engine.samples.worker.ApplicationProperties",
-      "sourceMethod": "public com.kuflow.engine.samples.worker.ApplicationProperties.TemporalProperties getTemporal() "
     },
     {
       "name": "application.temporal",
@@ -24,21 +13,9 @@
     },
     {
       "name": "application.temporal.mutual-tls",
-      "type": "com.kuflow.engine.samples.worker.ApplicationProperties$TemporalProperties$MutualTlsProperties",
-      "sourceType": "com.kuflow.engine.samples.worker.ApplicationProperties$TemporalProperties",
-      "sourceMethod": "public com.kuflow.engine.samples.worker.ApplicationProperties.TemporalProperties.MutualTlsProperties getMutualTls() "
-    },
-    {
-      "name": "application.temporal.mutual-tls",
       "type": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$TemporalProperties$MutualTlsProperties",
       "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$TemporalProperties",
       "sourceMethod": "public com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties.TemporalProperties.MutualTlsProperties getMutualTls() "
-    },
-    {
-      "name": "application.uivision",
-      "type": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$UIVisionProperties",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties",
-      "sourceMethod": "public com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties.UIVisionProperties getUivision() "
     },
     {
       "name": "uivision",
@@ -53,19 +30,9 @@
       "sourceType": "com.kuflow.engine.samples.worker.ApplicationProperties$TemporalProperties"
     },
     {
-      "name": "application.temporal.kuflow-queue",
-      "type": "java.lang.String",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$TemporalProperties"
-    },
-    {
       "name": "application.temporal.mutual-tls.ca",
       "type": "java.lang.String",
       "sourceType": "com.kuflow.engine.samples.worker.ApplicationProperties$TemporalProperties$MutualTlsProperties"
-    },
-    {
-      "name": "application.temporal.mutual-tls.ca",
-      "type": "java.lang.String",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$TemporalProperties$MutualTlsProperties"
     },
     {
       "name": "application.temporal.mutual-tls.ca-data",
@@ -73,19 +40,9 @@
       "sourceType": "com.kuflow.engine.samples.worker.ApplicationProperties$TemporalProperties$MutualTlsProperties"
     },
     {
-      "name": "application.temporal.mutual-tls.ca-data",
-      "type": "java.lang.String",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$TemporalProperties$MutualTlsProperties"
-    },
-    {
       "name": "application.temporal.mutual-tls.cert",
       "type": "java.lang.String",
       "sourceType": "com.kuflow.engine.samples.worker.ApplicationProperties$TemporalProperties$MutualTlsProperties"
-    },
-    {
-      "name": "application.temporal.mutual-tls.cert",
-      "type": "java.lang.String",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$TemporalProperties$MutualTlsProperties"
     },
     {
       "name": "application.temporal.mutual-tls.cert-data",
@@ -93,19 +50,9 @@
       "sourceType": "com.kuflow.engine.samples.worker.ApplicationProperties$TemporalProperties$MutualTlsProperties"
     },
     {
-      "name": "application.temporal.mutual-tls.cert-data",
-      "type": "java.lang.String",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$TemporalProperties$MutualTlsProperties"
-    },
-    {
       "name": "application.temporal.mutual-tls.key",
       "type": "java.lang.String",
       "sourceType": "com.kuflow.engine.samples.worker.ApplicationProperties$TemporalProperties$MutualTlsProperties"
-    },
-    {
-      "name": "application.temporal.mutual-tls.key",
-      "type": "java.lang.String",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$TemporalProperties$MutualTlsProperties"
     },
     {
       "name": "application.temporal.mutual-tls.key-data",
@@ -113,64 +60,14 @@
       "sourceType": "com.kuflow.engine.samples.worker.ApplicationProperties$TemporalProperties$MutualTlsProperties"
     },
     {
-      "name": "application.temporal.mutual-tls.key-data",
-      "type": "java.lang.String",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$TemporalProperties$MutualTlsProperties"
-    },
-    {
       "name": "application.temporal.namespace",
-      "type": "java.lang.String",
-      "sourceType": "com.kuflow.engine.samples.worker.ApplicationProperties$TemporalProperties"
-    },
-    {
-      "name": "application.temporal.namespace",
-      "type": "java.lang.String",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$TemporalProperties"
-    },
-    {
-      "name": "application.temporal.target",
       "type": "java.lang.String",
       "sourceType": "com.kuflow.engine.samples.worker.ApplicationProperties$TemporalProperties"
     },
     {
       "name": "application.temporal.target",
       "type": "java.lang.String",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$TemporalProperties"
-    },
-    {
-      "name": "application.uivision.auto-run-html",
-      "type": "java.lang.String",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$UIVisionProperties"
-    },
-    {
-      "name": "application.uivision.close-browser",
-      "type": "java.lang.Boolean",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$UIVisionProperties"
-    },
-    {
-      "name": "application.uivision.close-rpa",
-      "type": "java.lang.Boolean",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$UIVisionProperties"
-    },
-    {
-      "name": "application.uivision.command",
-      "type": "java.lang.String",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$UIVisionProperties"
-    },
-    {
-      "name": "application.uivision.execution-timeout",
-      "type": "java.time.Duration",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$UIVisionProperties"
-    },
-    {
-      "name": "application.uivision.log-directory",
-      "type": "java.lang.String",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$UIVisionProperties"
-    },
-    {
-      "name": "application.uivision.macro",
-      "type": "java.lang.String",
-      "sourceType": "com.kuflow.engine.samples.worker.SampleEngineWorkerUiVisionProperties$UIVisionProperties"
+      "sourceType": "com.kuflow.engine.samples.worker.ApplicationProperties$TemporalProperties"
     },
     {
       "name": "uivision.auto-run-html",
