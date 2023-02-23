@@ -1,18 +1,13 @@
 # KuFlow - RPA (UI.Vision) example
-
-# What we will create?
+## What we will create?
 
 This tutorial will guide us in building a simple Temporal.io worker workflow (*when we apply the Workflow as Code paradigm*) and connecting to an RPA tool (**UI.Vision**) to show more possibilities of integration for KuFlow. Our use case will be a simple automated task that will perform the following actions: open a new web browser tab, insert text in a Google search textbox, take a screenshot of the results page, and upload it to Kuflow's User Interface using our CLI (command-line interface tool that allows you to interact with the KuFlow Rest API without the need to interact with the API explicitly or through the application GUI interface).
 
 
-# Prerequisites
-
+## Prerequisites
 Before starting your Workflow for the first time, you must register in [KuFlow (app.kuflow.com)](https://app.kuflow.com/). After familiarizing yourself with the user interface by navigating through the menus or visiting our [Youtube channel](https://www.youtube.com/channel/UCXoRtHICa86YfX8P_wu1f6Q) with many videos that will help you in this task, you are ready to perform the necessary configurations for our Worker. To do so, click on the `Management` menu.
 
-## Create the Credentials
-
-### For the Worker
-
+### Create the Credentials for the Worker​
 We will configure an `APPLICATION` that will provide us with the necessary credentials so that our Worker (written in Java and located in your own machine) can interface with KuFlow.
 
 Go to the `Settings > Applications` menu and click on `Add application`. We establish the name we want and save. Next, you will get the first data needed to configure our Worker.
@@ -38,22 +33,22 @@ It is also necessary to indicate the CA certificate, which is the root certifica
 
 Finally, you get something like:
 
-<div class="center">
+<div class="text--center">
 
-![](/img/tutorial/TUT03-01-App.png)
+![](/img/tutorial/java-APItutorial2/TUT03-01-App.png)
 
 </div>
 
 ## Preparing Scenario
 ### KuFlow's CLI
- We'll use the CLI which implements a client of our API, saving you from having to create your own implementation to interact with KuFlow. To install this CLI on your system the steps will be found in the [CLI documentation](https://docs.kuflow.com/developers/kuflowctl/). Depending on how you decide to authenticate the CLI, you may need to adjust the value of command #2 to pass them the appropriate credentials. For this example we'll assume that the CLI is authenticated with a configuration file located in the default path.
+ We'll use a CLI which implements a client of our API, saving you from having to create your own implementation to interact with KuFlow. To install this CLI on your system the steps will be found in our [CLI documentation](https://docs.kuflow.com/developers/kuflowctl/). Depending on how you decide to authenticate the CLI, you may need to adjust the value of command #6 of the following step to pass them the appropriate credentials. For this example we'll assume that the CLI is authenticated with a configuration file located in the default path.
 
 ### UI.Vision Tools
 In the KuFlow SDK we have an implementation of this activity ready to use. Its operation is simple. Basically what you do is to run an external process installed on the machine, which in this case is none other than a Chrome browser with the [UI.Vision extension](https://ui.vision/#get) configured and a robot registered to it. If this implementation does not fit your needs, you can always make your own using the provided activity as a reference.
 
 To learn more about this implementation, see our [document section about UI.Vision.](https://docs.kuflow.com/developers/rpa/uivision)
 
-We'll asume that you have the knowledge to implement a robot in UI.Vision, otherwise the [documentation](https://ui.vision/rpa/docs) available on their website and their forum are of great help. Our robot will simply open a new web browser tab, insert text in a Google search textbox, take a screenshot of the results page, and upload it to Kuflow's User Interface using our CLI. The robot specification is the following:
+We'll assume that you have the knowledge to implement a robot in UI.Vision; otherwise [documentation](https://ui.vision/rpa/docs) is available on their website and their forum can be of great help.   r robot will simply open a new web browser tab, insert text in a Google search textbox, take a screenshot of the results page, and upload it to Kuflow's User Interface using our CLI. The robot specification is the following:
 
 |    | Command           | Target                  | Value                                                                                             |
 |----|-------------------|-------------------------|---------------------------------------------------------------------------------------------------|
@@ -76,7 +71,6 @@ For this example you have to install UI.Vision with its [Xmodules module](https:
 Make sure that in the extension details, the "Allow access to file URLs" option is checked.
 :::
 
-
 **Some important details about the robot instructions:**
 
 - Our activity passes to the robot the taskId of the task in which it should upload the capture taken.
@@ -84,11 +78,12 @@ Make sure that in the extension details, the "Allow access to file URLs" option 
 
 <div class="text--center">
 
-![](/img/tutorial/java-uivision/ui-vision-gui.png)
+![](/img/tutorial/java-uivision/tut11-uivisiongui.jpg)
 
 </div>
 
 ### Create the process definition
+
 We need to create the definition of the process that will execute our Workflow. In this section we will configure the KuFlow tasks of which it is made up as well as the information necessary to complete said tasks, the process access rules (i.e. *RBAC*), as well as another series of information. To do this we go to the `Setting > Processes` menu and create a new process. You can take a quick look at this [video](https://youtu.be/a8042IkqchQ) to get an idea of the user interface for process definition.
 
 A ***Process Definition*** with the following data:
@@ -129,35 +124,32 @@ You'll get something like:
 
 <div class="text--center">
 
-![](/img/tutorial/serverless/TUT03-04-Process.png)
+![](/img/tutorial/java-uivision/tut11-proccessdefinition.jpg)
 
 </div>
 
 ### Publish the process and download the template for the Workflow Worker​
 By clicking on the “Publish” button you’ll receive a confirmation request message, once you have confirmed the process will be published.
 
+<div class="text--center">
 
-<div class="center">
+![](/img/tutorial/java-uivision/tut11-publish.jpg)
 
-![](/img/tutorial/serverless/TUT03-05-publish.png)
-
-![](/img/tutorial/serverless/TUT03-06-publish.png)
-
-</div>
-
-
-Now, you can download a sample Workflow Implementation from the Process Definition main page.
-
-
-<div class="center">
-
-![](/img/tutorial/serverless/TUT03-07-Template_1)
-
-![](/img/tutorial/serverless/TUT03-07-Template_2)
+![](/img/tutorial/java-uivision/tut11-publish2.jpg)
 
 </div>
 
-This code will serve as a starting point for implementing our worker. The requirements for its use are the following:
+Now, you can download a sample Workflow Implementation from the Process Definition main page. You'll be able to choose from several programming languages according to your preference or environment. For more information ake a look to this [blog entry.](https://kuflow.com/blog/en/new-templates/)
+
+<div class="text--center">
+
+![](/img/tutorial/java-uivision/tut11-template.jpg)
+
+![](/img/tutorial/java-uivision/tut11-template2.jpg)
+
+</div>
+
+This code will serve as a starting point for implementing our worker. As we'll use the Java template, the requirements for its use are the following:
 
 - **Java JDK**
   - You need to have a Java JDK installed on your system. The current example code uses version 17, but is not required for the KuFlow SDK. You can use for example [Adoptium](https://adoptium.net/) distribution or any other. We recommend you to use a tool like [SDKMan](https://sdkman.io/jdks) to install Java SDK distributions in a comfortable way.
@@ -182,12 +174,10 @@ To make things simpler, the following technologies have been mainly used in our 
 
 
 ## Implementation
+**Note:** You can download or clone the source code of this tutorial from our [public Github repository](https://github.com/kuflow/kuflow-engine-samples-java), be sure to add all the tokens and secrets from your KuFlow account and, if is the case, 3rd party API developers.
 
-*Note:* You can download or clone the source code of this tutorial from our [public Github repository](https://github.com/kuflow/kuflow-engine-samples-java), be sure to add all the tokens and secrets from your KuFlow account and, if is the case, 3rd party API developers.
-
-### Resolve dependencies
-
-We need to modify pom.xml, to include this new dependencies:
+### Resolve dependencies​
+We need to modify `pom.xml`, to include this new dependencies:
 ```xml
     <dependency>
       <groupId>io.grpc</groupId>
@@ -202,9 +192,14 @@ We need to modify pom.xml, to include this new dependencies:
 ```
 
 ### Using Credentials
+
 Now, in this step we are filling up the application configuration information. You must complete all the settings and replace the example values. 
+
 #### KuFlow’s Credentials
-The appropriate values can be obtained from the KuFlow application. Check out the [Create the credentials] section of this tutorial.
+
+The appropriate values can be obtained from the KuFlow application. Check out the [Create the credentials](#create-the-credentials-for-the-worker) section of this tutorial.
+
+**NOTE:** Remember that this scenario is running over a Windows SO environment, in the  code  examples comments you'll find Linux paths but Windows paths are used.
 
 ```yaml
 # ===================================================================
@@ -216,14 +211,15 @@ kuflow:
 
     # ID of the APPLICATION configured in KUFLOW.
     # Get it in "Application details" in the Kuflow APP.
-    application-id: FILL_ME
+    client-id: FILL_ME
 
     # TOKEN of the APPLICATION configured in KUFLOW.
     # Get it in "Application details" in the Kuflow APP.
-    token: FILL_ME
+    client-secert: FILL_ME
 
 activity:
   ui-vision:
+
     # Browser with UI.VISION pluging.
     # Example linux: /user/bin/google-chrome
     launch-command: C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe
@@ -253,9 +249,9 @@ activity:
     # It should be less than the duration specified in the StartToCloseTimeout of the UI.Vision Temporal activity.
     execution-timeout: 20m
 
-
 application:
   temporal:
+
     # Temporal Namespace. Get it in "Application details" in the KUFLOW APP.
     namespace: FILL_ME
 
@@ -263,118 +259,88 @@ application:
     kuflow-queue: FILL_ME
 
     mutual-tls:
-
       # Client certificate
       # Get it in "Application details" in the KUFLOW APP.
       cert-data: |
         -----BEGIN CERTIFICATE-----
         fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
         fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-        ...
-        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        …
         fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
         fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
         -----END CERTIFICATE-----
 
-
       # Private key
       # Get it in "Application details" in the KUFLOW APP.
       # IMPORTANT: This example works with PKCS8, so ensure PKCS8 is selected
-      #            when you generate the certificates in the KUFLOW App
+        #            when you generate the certificates in the KUFLOW App
       key-data: |
-        -----BEGIN PRIVATE KEY-----
+        -----BEGIN CERTIFICATE-----
         fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
         fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-        ...
-        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        …
         fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
         fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-        -----END PRIVATE KEY-----
+        -----END CERTIFICATE-----
 
       # KUFLOW Certification Authority (CA) of the certificates issued in KUFLOW
       ca-data: |
         -----BEGIN CERTIFICATE-----
         fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
         fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-        ...
-        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        …
         fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
         fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
         -----END CERTIFICATE-----
 ```
 
-Please note that this is a YAML, respect the indentation.
+Please note that this is a `YAML`, respect the indentation.
 
+#### KuFlows CLI credentials
 
-<div class="text--center">
+Create a file called `.kuflow.yml` in your user home folder (*C:\Users\USERNAME\ for Windows OS*) with the following text:
 
-![](/img/tutorial/serverless/TUT03-07-Template_3)
+```yaml
+kuflow:
+  # ID of the APPLICATION configured in KUFLOW.
+  # Get it in "Application details" in the Kuflow APP.
+  client-id: YOUR_IDENTIFIER
 
-</div>
-
-#### KuFlow's CLI credentials
-Create a file called `.kuflow.yml` in your user home folder (C:\Users\<<usarname>>\ for Windows OS with the following text:
-
-
-	 kuflow:
-	    # ID of the APPLICATION configured in KUFLOW.
-	    # Get it in "Application details" in the Kuflow APP.
-	    client-id: YOUR_IDENTIFIER
-	
-	    # TOKEN of the APPLICATION configured in KUFLOW.
-	    # Get it in "Application details" in the Kuflow APP.
-	    client-secret: YOUR_SECRET
-	    
-	    # OPTIONAL KUFLOW REST API. Default is: https://api.kuflow.com
-	    endpoint: https://api.kuflow.com
+  # TOKEN of the APPLICATION configured in KUFLOW.
+  # Get it in "Application details" in the Kuflow APP.
+  client-secret: YOUR_SECRET
+  
+  # OPTIONAL KUFLOW REST API. Default is: https://api.kuflow.com
+  endpoint: https://api.kuflow.com
+```
 
 ### Folder Structures and files
+
 At the root of the project, we have to create a folder called **"etc"** and inside it two others:
 
-- **"autostarthtml"** with the file *"ui.vision.html"*
- 
-- **"macro"** with the file *"KuflowScreenshot.json"* 
+- **"autostarthtml"** with the file `ui.vision.html`
+
+- **"macro"** with the file `KuflowScreenshot.json`
 
 **NOTE:** both files could be downloaded from the [Github repository](https://github.com/kuflow/kuflow-engine-samples-java) or from the UI.Vision Interface installed on your computer.
 
-If you will import the [macro](https://github.com/kuflow/kuflow-samples-java/blob/main/kuflow-samples-temporal-uivision-spring/etc/macro/KuFlowScreenshot.json) from github, use the UI.Vision gui (`Import JSON` action). 
+If you will import the [macro](https://github.com/kuflow/kuflow-samples-java/blob/main/kuflow-samples-temporal-uivision-spring/etc/macro/KuFlowScreenshot.json) from github, use the UI.Vision gui (`Import JSON` action).
 
-**NOTE:** Make sure the `Storage Mode: File system (on hard drive)` is selected, in order to store the results of the robot (the capture and logs) on the hard drive and not in the browser storage.
+:::info IMPORTANT
+Make sure the `Storage Mode: File system (on hard drive)` is selected, in order to store the results of the robot (the capture and logs) on the hard drive and not in the browser storage.
+:::
 
 ### Configurations
+
 Now, due to the complexity of the code we're adding, it's recommended that you download and replace the [ApplicationProperties.java](https://github.com/kuflow) file on your downloaded template. We've added all the UI.Vision robot properties for you to avoid writing them all (*about 90 lines*).
 
-#### Workflow and Activity register
-To implement the activities that perform the communication with the KuFlow REST API and the UIVision activities we need to register them in the Temporal bootstrap class. 
+### Workflow and Activity register
 
-**NOTE:** *We add a comment **"//ADD"** before each line to highlight new code.*
+To implement the activities that perform the communication with the KuFlow REST API and the UIVision activities we need to register them in the Temporal bootstrap class.
 
-[TemporalBootstrap.java]
+**NOTE:** *We add a comment **"//ADD this line:"** before each line to highlight new code.*
 
- 
-	/*
-	 * Copyright (c) 2021-present KuFlow S.L.
-	 *
-	 * All rights reserved.
-	 */
-	
-	package com.kuflow.engine.samples.worker;
-	
-	import com.kuflow.temporal.activity.kuflow.KuFlowAsyncActivities;
-	import com.kuflow.temporal.activity.kuflow.KuFlowSyncActivities;
-	import com.kuflow.temporal.activity.uivision.UIVisionActivities;
-	
-	import io.temporal.worker.Worker;
-	import io.temporal.worker.WorkerFactory;
-	import java.util.concurrent.TimeUnit;
-	import org.slf4j.Logger;
-	import org.slf4j.LoggerFactory;
-	import org.springframework.beans.factory.DisposableBean;
-	import org.springframework.beans.factory.InitializingBean;
-	import org.springframework.stereotype.Component;
+[TemporalBootstrap.java](https://github.com/kuflow)
 
 	@Component
 	public class TemporalBootstrap implements InitializingBean, DisposableBean {
@@ -389,7 +355,7 @@ To implement the activities that perform the communication with the KuFlow REST 
 	
 	    private final ApplicationProperties applicationProperties;
 	
-	    //ADD
+	    //ADD this line:
 	    private final UIVisionActivities uiVisionActivities;
 
 	    public TemporalBootstrap(
@@ -397,14 +363,14 @@ To implement the activities that perform the communication with the KuFlow REST 
 	        WorkerFactory factory,
 	        KuFlowSyncActivities kuFlowSyncActivities,
 	        KuFlowAsyncActivities kuFlowAsyncActivities,
-	        //ADD
+	        //ADD this line:
 	        UIVisionActivities uiVisionActivities
 	    ) {
 	        this.applicationProperties = applicationProperties;
 	        this.factory = factory;
 	        this.kuFlowSyncActivities = kuFlowSyncActivities;
 	        this.kuFlowAsyncActivities = kuFlowAsyncActivities;
-	        //ADD
+	        //ADD this line:
 	        this.uiVisionActivities = uiVisionActivities;
 	    }
 
@@ -426,7 +392,7 @@ To implement the activities that perform the communication with the KuFlow REST 
 	        worker.registerWorkflowImplementationTypes(SampleWorkflowImpl.class);
 	        worker.registerActivitiesImplementations(this.kuFlowSyncActivities);
 	        worker.registerActivitiesImplementations(this.kuFlowAsyncActivities);
-	        //ADD
+	        //ADD this line:
 	        worker.registerActivitiesImplementations(this.uiVisionActivities);
 	
 	        this.factory.start();
@@ -434,9 +400,14 @@ To implement the activities that perform the communication with the KuFlow REST 
 	}
 
 #### Workflow Implementation
+
+In this section, we will make the fundamental steps to creating the most basic workflow for this business process:
+
+- Users in the organization could execute an external process through an RPA tool ([UI.Vision](https://ui.vision/)) to open a new tab, complete a form, get information (*a screenshot in this case*), and view it in KuFlow's UI.
+  
 The entry point to the Workflow execution is determined by the `@WorkflowMethod` annotation that it'll be our code the main method.
 
-[SampleWorkflowImpl.java]
+[SampleWorkflowImpl.java](https://github.com/kuflow)
 
 	@Override
 	public WorkflowResponse runWorkflow(WorkflowRequest workflowRequest) {
@@ -456,7 +427,7 @@ The structure is very simple:
 - Initialize a identifier generator in order to use deterministic Id in idempotent calls.
 - Create a KuFlow Task to execute the bot.
 - Report completed Workflow.
-- Here the most relevant thing is the method that the robot executes. 
+- Here the most relevant thing is the method that the robot executes.
 
 An the orchestration is like this:
 
@@ -464,6 +435,10 @@ An the orchestration is like this:
 - Claim the task
 - Execute the robot
 - Complete the task
+
+Below you will find an example of the code used to perform the aforementioned. You can choose to modify it in your previously downloaded template or clone the project from our [public Github repository.](https://github.com/kuflow/)
+
+**NOTE:** *We add comments like **"//ADD this line:"** before each line to highlight new code.*
 
 	private void createTaskRobotResults(WorkflowRequest workflowRequest) {
 	    UUID taskId = this.kuflowGenerator.randomUUID();
@@ -499,183 +474,34 @@ An the orchestration is like this:
 	    this.kuFlowSyncActivities.completeTask(completeTaskRequest);
 	}
 
-
-### Workflow Implementation
-
-we'll be adding all the Uivision properties to ApplicationProperties,java
-
-In this section, we will make the fundamental steps to creating the most basic workflow for this business process:
-- Users in the organization could get the availability of seats in a Bus, and if spaces are available, fill out a form to book a seat and receive a book confirmation with the seat number, and if there are no seats available, be informed without the need to complete the form.
-
-Open the **SampleWorkflowImpl.java** file and modify it as follows. *//HERE before each line to highlight new code.*
-
-Declaring an instance of our new activities after kuflowActivities declaration: 
-
-```java 
-private final KuFlowActivities kuflowActivities;
-//HERE
-private final GSheetsActivities gSheetsActivities;
-```
-
-At the end of the constructor method **SampleWorkflowImpl()** add the following to initialize the activities :
-```java
-this.kuflowActivities =
-Workflow.newActivityStub(
-                KuFlowActivities.class,
-                defaultActivityOptions,
-                Map.of(                         TemporalUtils.getActivityType(KuFlowActivities.class, 
-"createTaskAndWaitFinished"), asyncActivityOptions
-                )
-            );
-//HERE
-this.gSheetsActivities = Workflow.newActivityStub(GSheetsActivities.class, defaultActivityOptions);
-    }
-```
-
-Now we modify the **runWorkflow()** method as follows to:
-1. Assign to a variable the cell value returned from our method **getCellValue()**.
-2. If no seats are available, create and execute the task for *"No Seats"* notification.
-3. If a seat is available, create and execute the task to show the Billboard and the form.
-4. Use the **writeSheet()** method with the information filled.
-5. Create and execute the task for *"Reservation Complete"* notification, showing the seat number assigned.
-
-```java
-@Override
-    public WorkflowResponseResource runWorkflow(WorkflowRequestResource request) {
-        LOGGER.info("Process {} started", request.getProcessId());
-
-        this.kuFlowGenerator = new KuFlowGenerator(request.getProcessId());
-
-        //1
-        String seatsAvailable = this.gSheetsActivities.getCellValue();
-        if ((seatsAvailable).equalsIgnoreCase("0")) {
-            //2
-            this.createTaskNotificationNoSeatsAvailable(request);
-        } else {
-            //3
-            TaskResource taskReservationApplication = this.createTaskReservationForm(request);
-            //4
-            this.writeSheet(taskReservationApplication);
-            //5
-        This.createTaskNotificationReservationComplete(request);
-        }
-
-        CompleteProcessResponseResource completeProcess = this.completeProcess(request.getProcessId());
-
-        LOGGER.info("Process {} finished", request.getProcessId());
-
-        return this.completeWorkflow(completeProcess);
-    }
-```
-
-Next, we add in **createTaskReservationForm()** the following lines of code, to Adding the reading of the sheet and passing it to the text element “seats”
-
-```java
-private TaskResource createTaskReservationForm(WorkflowRequestResource workflowRequest) {
-        UUID taskId = this.kuFlowGenerator.randomUUID();
-
-        CreateTaskRequestResource createTaskRequest = new CreateTaskRequestResource();
-        createTaskRequest.setTaskId(taskId);
-        createTaskRequest.setTaskDefinitionCode(TASK_CODE_RESERVATION_FORM);
-        createTaskRequest.setProcessId(workflowRequest.getProcessId());
-
-        //HERE
-        List<String> result = this.gSheetsActivities.readSheet();
-        createTaskRequest.putElementValuesItem("seats", TaskElementValueWrapperResource.of(result.get(0)));
-
-        // Create and retrieve Task in KuFlow
-        this.kuflowActivities.createTaskAndWaitFinished(createTaskRequest);
-
-        RetrieveTaskRequestResource retrieveTaskRequest = new RetrieveTaskRequestResource();
-        retrieveTaskRequest.setTaskId(taskId);
-        RetrieveTaskResponseResource retrieveTaskResponse = this.kuflowActivities.retrieveTask(retrieveTaskRequest);
-
-        return retrieveTaskResponse.getTask();
-    }
-```
-
-
-Something similar will be done in **createTaskNotificationReservationComplete()** this time to use the **getSeatNo()** method:
-```java
-String seatNo = this.gSheetsActivities.getSeatNo();
-createTaskRequest.putElementValuesItem("seatNo", TaskElementValueWrapperResource.of(seatNo));
-```
-
-The last modification will be a creation of a method called writeSheet() to get the information from the completed form and given to the **writeSheet()** Method:
-
-```java
-private List<String> writeSheet(TaskResource task) {
-        String firstName = task.getElementValues().get("firstName").getValueAsString();
-        String lastName = task.getElementValues().get("lastName").getValueAsString();
-        String email = task.getElementValues().get("email").getValueAsString();
-
-        return this.gSheetsActivities.writeSheet(firstName, lastName, email);
-    }
-```
-
-
 The final step with the code is including some imports needed for this tutorial using some feature of your IDE (like pressing SHIFT+ ALT + O in Visual Studio Code).
-
 
 ## Testing
 
-We can test all that we have done by running  the worker (like pressing F5 in Visual Studio Code):
+We can test all that we have done by running the worker (like pressing F5 in Visual Studio Code):
 
 <div class="text--center">
 
-![](/img/tutorial/serverless/TUT03-08-Test_1.png)
+![](/img/tutorial/java-uivision/tut11-vscodef5.jpg)
 
 </div>
 
-And initiating the process in KuFlow’s UI.
+And initiating the process in KuFlow’s UI, you'll get something like this:
 
 <div class="text--center">
 
-![](/img/tutorial/serverless/TUT03-08-Test_2.png)
-
-</div>
-
-**Note:** Maybe the 3rd Party API request authorization for access, please follow the indications:
-
-
-<div class="text--center">
-
-![](/img/tutorial/serverless/TUT03-08-Test_3.png)
-
-</div>
-
-If there are seats available, the UI will show the Bus Billboard and the form to complete with the booking information.
-
-<div class="text--center">
-
-![](/img/tutorial/serverless/TUT03-08-Test_4.png)
-![](/img/tutorial/serverless/TUT03-08-Test_5.png)
-
-</div>
-
-If not, will show the “No Seats Available” notification:
-
-<div class="text--center">
-
-![](/img/tutorial/serverless/TUT03-08-Test_3.png)
-
-</div>
-
-You get something like this:
-
-<div class="text--center">
-
-![](/img/tutorial/serverless/TUT03-08-Test_3.png)
+![](/img/tutorial/java-uivision/tut11-test.gif)
 
 </div>
 
 ## Summary
 
-In this tutorial, we have covered the basics of creating a Temporal.io based workflow in KuFlow using a 3rd Party API (Google). We have defined a new process definition and we have built a workflow that contemplates the following business rules involving human tasks:
-1. Read a Google Spreadsheet
-2. Show this information in KuFlow’s UI
-3. Get information from KuFlow’s UI and write it into the Spreadsheet.
-4. Notify the requester of the response.
+In this tutorial, we have covered the basics of creating a Temporal.io based workflow in KuFlow using a RPA Tool (UI.Ivision). We have defined a new process definition and we have built a workflow that contemplates the following business rules involving automated, simulating human tasks:
+
+1. Open a new web browser tab
+2. Complete a form with a specified text
+3. Wait a webpage to load and take information from it (*in this case a screenshot*)
+4. Show this information in KuFlow’s UI.
 
 We have created a special video with the entire process:
 
