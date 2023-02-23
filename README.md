@@ -1,13 +1,16 @@
 # KuFlow - RPA (UI.Vision) example
+
 ## What we will create?
 
 This tutorial will guide us in building a simple Temporal.io worker workflow (*when we apply the Workflow as Code paradigm*) and connecting to an RPA tool (**UI.Vision**) to show more possibilities of integration for KuFlow. Our use case will be a simple automated task that will perform the following actions: open a new web browser tab, insert text in a Google search textbox, take a screenshot of the results page, and upload it to Kuflow's User Interface using our CLI (command-line interface tool that allows you to interact with the KuFlow Rest API without the need to interact with the API explicitly or through the application GUI interface).
 
 
 ## Prerequisites
+
 Before starting your Workflow for the first time, you must register in [KuFlow (app.kuflow.com)](https://app.kuflow.com/). After familiarizing yourself with the user interface by navigating through the menus or visiting our [Youtube channel](https://www.youtube.com/channel/UCXoRtHICa86YfX8P_wu1f6Q) with many videos that will help you in this task, you are ready to perform the necessary configurations for our Worker. To do so, click on the `Management` menu.
 
-### Create the Credentials for the Worker​
+### Create the Credentials for the Worker
+
 We will configure an `APPLICATION` that will provide us with the necessary credentials so that our Worker (written in Java and located in your own machine) can interface with KuFlow.
 
 Go to the `Settings > Applications` menu and click on `Add application`. We establish the name we want and save. Next, you will get the first data needed to configure our Worker.
@@ -35,7 +38,7 @@ Finally, you get something like:
 
 <div class="text--center">
 
-![](/img/tutorial/java-APItutorial2/TUT03-01-App.png)
+![](/img/TUT-01-App.png)
 
 </div>
 
@@ -78,7 +81,7 @@ Make sure that in the extension details, the "Allow access to file URLs" option 
 
 <div class="text--center">
 
-![](/img/tutorial/java-uivision/tut11-uivisiongui.jpg)
+![](/img/tut11-uivisiongui.jpg)
 
 </div>
 
@@ -124,7 +127,7 @@ You'll get something like:
 
 <div class="text--center">
 
-![](/img/tutorial/java-uivision/tut11-proccessdefinition.jpg)
+![](/img/tut11-proccessdefinition.jpg)
 
 </div>
 
@@ -133,9 +136,9 @@ By clicking on the “Publish” button you’ll receive a confirmation request 
 
 <div class="text--center">
 
-![](/img/tutorial/java-uivision/tut11-publish.jpg)
+![](/img/tut11-publish.jpg)
 
-![](/img/tutorial/java-uivision/tut11-publish2.jpg)
+![](/img/tut11-publish2.jpg)
 
 </div>
 
@@ -143,9 +146,9 @@ Now, you can download a sample Workflow Implementation from the Process Definiti
 
 <div class="text--center">
 
-![](/img/tutorial/java-uivision/tut11-template.jpg)
+![](/img/tut11-template.jpg)
 
-![](/img/tutorial/java-uivision/tut11-template2.jpg)
+![](/img/tut11-template2.jpg)
 
 </div>
 
@@ -174,9 +177,11 @@ To make things simpler, the following technologies have been mainly used in our 
 
 
 ## Implementation
+
 **Note:** You can download or clone the source code of this tutorial from our [public Github repository](https://github.com/kuflow/kuflow-engine-samples-java), be sure to add all the tokens and secrets from your KuFlow account and, if is the case, 3rd party API developers.
 
-### Resolve dependencies​
+### Resolve dependencies
+
 We need to modify `pom.xml`, to include this new dependencies:
 ```xml
     <dependency>
@@ -482,7 +487,7 @@ We can test all that we have done by running the worker (like pressing F5 in Vis
 
 <div class="text--center">
 
-![](/img/tutorial/java-uivision/tut11-vscodef5.jpg)
+![](/img/tut11-vscodef5.jpg)
 
 </div>
 
@@ -490,7 +495,7 @@ And initiating the process in KuFlow’s UI, you'll get something like this:
 
 <div class="text--center">
 
-![](/img/tutorial/java-uivision/tut11-test.gif)
+![](/img/tut11-test.gif)
 
 </div>
 
