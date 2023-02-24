@@ -97,16 +97,16 @@ A ***Process Definition*** with the following data:
   - Free text description about the Workflow.
 - **Workflow**
   - **Workflow Engine**
-    - *KuFlow Engine*, because we are designing a Temporal-based Worker.
+   	- *KuFlow Engine*, because we are designing a Temporal-based Worker.
   - **Workflow Application**
-    - The application to which our Worker will connect to
+   	- The application to which our Worker will connect to
   - **Task queue**
-    - The name of the Temporal queue where the KuFlow tasks will be set. You can choose any name, later you will set this same name in the appropriate configuration in your Worker. For example: `UIVisionQueue`.
+  	- The name of the Temporal queue where the KuFlow tasks will be set. You can choose any name, later you will set this same name in the appropriate configuration in your Worker. For example: `UIVisionQueue`.
   - **Name**
-    - It must match the name of the Java interface of the Workflow. In our example, `UIVisionSampleWorkflow` is the name you should type in this input.
+  	- It must match the name of the Java interface of the Workflow. In our example, `UIVisionSampleWorkflow` is the name you should type in this input.
 - **Permissions**
   1. At least one user or group of users with the role of `INITIATOR` in order to instantiate the process through the application.
-     1. Optional: In order to view administrative actions in the GUI, it may interesting to set the `Manager` role as well for some user.
+  	1. Optional: In order to view administrative actions in the GUI, it may interesting to set the `Manager` role as well for some user.
 
 
 A ***Task Definition*** in the process with the following data:
@@ -347,62 +347,64 @@ To implement the activities that perform the communication with the KuFlow REST 
 
 [TemporalBootstrap.java](https://github.com/kuflow)
 
-	@Component
-	public class TemporalBootstrap implements InitializingBean, DisposableBean {
+```java
+@Component
+public class TemporalBootstrap implements InitializingBean, DisposableBean {
 
-	    private static final Logger LOGGER = LoggerFactory.getLogger(TemporalBootstrap.class);
-	
-	    private final WorkerFactory factory;
-	
-	    private final KuFlowSyncActivities kuFlowSyncActivities;
-	
-	    private final KuFlowAsyncActivities kuFlowAsyncActivities;
-	
-	    private final ApplicationProperties applicationProperties;
-	
-	    //ADD this line:
-	    private final UIVisionActivities uiVisionActivities;
+    private static final Logger LOGGER = LoggerFactory.getLogger(TemporalBootstrap.class);
 
-	    public TemporalBootstrap(
-	        ApplicationProperties applicationProperties,
-	        WorkerFactory factory,
-	        KuFlowSyncActivities kuFlowSyncActivities,
-	        KuFlowAsyncActivities kuFlowAsyncActivities,
-	        //ADD this line:
-	        UIVisionActivities uiVisionActivities
-	    ) {
-	        this.applicationProperties = applicationProperties;
-	        this.factory = factory;
-	        this.kuFlowSyncActivities = kuFlowSyncActivities;
-	        this.kuFlowAsyncActivities = kuFlowAsyncActivities;
-	        //ADD this line:
-	        this.uiVisionActivities = uiVisionActivities;
-	    }
+    private final WorkerFactory factory;
 
-	    @Override
-	    public void afterPropertiesSet() {
-	        this.startWorkers();
-	        LOGGER.info("Temporal connection initialized");
-	    }
-	
-	    @Override
-	    public void destroy() {
-	        this.factory.shutdown();
-	        this.factory.awaitTermination(1, TimeUnit.MINUTES);
-	        LOGGER.info("Temporal connection shutdown");
-	    }
-	
-	    private void startWorkers() {
-	        Worker worker = this.factory.newWorker(this.applicationProperties.getTemporal().getKuflowQueue());
-	        worker.registerWorkflowImplementationTypes(SampleWorkflowImpl.class);
-	        worker.registerActivitiesImplementations(this.kuFlowSyncActivities);
-	        worker.registerActivitiesImplementations(this.kuFlowAsyncActivities);
-	        //ADD this line:
-	        worker.registerActivitiesImplementations(this.uiVisionActivities);
-	
-	        this.factory.start();
-    	}
-	}
+    private final KuFlowSyncActivities kuFlowSyncActivities;
+
+    private final KuFlowAsyncActivities kuFlowAsyncActivities;
+
+    private final ApplicationProperties applicationProperties;
+
+    //HERE
+    private final UIVisionActivities uiVisionActivities;
+
+    public TemporalBootstrap(
+        ApplicationProperties applicationProperties,
+        WorkerFactory factory,
+        KuFlowSyncActivities kuFlowSyncActivities,
+        KuFlowAsyncActivities kuFlowAsyncActivities,
+        //Add 2
+        UIVisionActivities uiVisionActivities
+    ) {
+        this.applicationProperties = applicationProperties;
+        this.factory = factory;
+        this.kuFlowSyncActivities = kuFlowSyncActivities;
+        this.kuFlowAsyncActivities = kuFlowAsyncActivities;
+        //Add 3
+        this.uiVisionActivities = uiVisionActivities;
+    }
+
+    @Override
+    public void afterPropertiesSet() {
+        this.startWorkers();
+        LOGGER.info("Temporal connection initialized");
+    }
+
+    @Override
+    public void destroy() {
+        this.factory.shutdown();
+        this.factory.awaitTermination(1, TimeUnit.MINUTES);
+        LOGGER.info("Temporal connection shutdown");
+    }
+
+    private void startWorkers() {
+        Worker worker = this.factory.newWorker(this.applicationProperties.getTemporal().getKuflowQueue());
+        worker.registerWorkflowImplementationTypes(SampleWorkflowImpl.class);
+        worker.registerActivitiesImplementations(this.kuFlowSyncActivities);
+        worker.registerActivitiesImplementations(this.kuFlowAsyncActivities);
+        //Add 4
+        worker.registerActivitiesImplementations(this.uiVisionActivities);
+
+        this.factory.start();
+    }
+}
+```
 
 #### Workflow Implementation
 
@@ -414,18 +416,20 @@ The entry point to the Workflow execution is determined by the `@WorkflowMethod`
 
 [SampleWorkflowImpl.java](https://github.com/kuflow)
 
-	@Override
-	public WorkflowResponse runWorkflow(WorkflowRequest workflowRequest) {
-	    this.kuflowGenerator = new KuFlowGenerator(workflowRequest.getProcessId());
-	
-	    this.createTaskRobotResults(workflowRequest);
-	
-	    CompleteProcessResponse completeProcess = this.completeProcess(workflowRequest);
-	
-	    LOGGER.info("UiVision process finished. {}", workflowRequest.getProcessId());
-	
-	    return this.completeWorkflow(completeProcess);
-	}
+```java
+@Override
+public WorkflowResponse runWorkflow(WorkflowRequest workflowRequest) {
+    this.kuflowGenerator = new KuFlowGenerator(workflowRequest.getProcessId());
+
+    this.createTaskRobotResults(workflowRequest);
+
+    CompleteProcessResponse completeProcess = this.completeProcess(workflowRequest);
+
+    LOGGER.info("UiVision process finished. {}", workflowRequest.getProcessId());
+
+    return this.completeWorkflow(completeProcess);
+}
+```
 
 The structure is very simple:
 
@@ -445,39 +449,41 @@ Below you will find an example of the code used to perform the aforementioned. Y
 
 **NOTE:** *We add comments like **"//ADD this line:"** before each line to highlight new code.*
 
-	private void createTaskRobotResults(WorkflowRequest workflowRequest) {
-	    UUID taskId = this.kuflowGenerator.randomUUID();
-	
-	    // Create task in KuFlow
-	    TaskDefinitionSummary tasksDefinition = new TaskDefinitionSummary();
-	    tasksDefinition.setCode(TASK_ROBOT_RESULTS);
-	
-	    Task task = new Task();
-	    task.setId(taskId);
-	    task.setProcessId(workflowRequest.getProcessId());
-	    task.setTaskDefinition(tasksDefinition);
-	
-	    CreateTaskRequest createTaskRequest = new CreateTaskRequest();
-	    createTaskRequest.setTask(task);
-	    this.kuFlowSyncActivities.createTask(createTaskRequest);
-	
-	    // Claim task by the worker because is a valid candidate.
-	    // We could also claim it by specifying the "owner" in the above creation call.
-	    // We use the same application for the worker and for the robot.
-	    ClaimTaskRequest claimTaskRequest = new ClaimTaskRequest();
-	    claimTaskRequest.setTaskId(taskId);
-	    this.kuFlowSyncActivities.claimTask(claimTaskRequest);
-	
-	    // Executes the Temporal activity to run the robot.
-	    ExecuteUIVisionMacroRequest executeUIVisionMacroRequest = new ExecuteUIVisionMacroRequest();
-	    executeUIVisionMacroRequest.setTaskId(taskId);
-	    this.uiVisionActivities.executeUIVisionMacro(executeUIVisionMacroRequest);
-	
-	    // Complete the task.
-	    CompleteTaskRequest completeTaskRequest = new CompleteTaskRequest();
-	    completeTaskRequest.setTaskId(taskId);
-	    this.kuFlowSyncActivities.completeTask(completeTaskRequest);
-	}
+```java
+private void createTaskRobotResults(WorkflowRequest workflowRequest) {
+    UUID taskId = this.kuflowGenerator.randomUUID();
+
+    // Create task in KuFlow
+    TaskDefinitionSummary tasksDefinition = new TaskDefinitionSummary();
+    tasksDefinition.setCode(TASK_ROBOT_RESULTS);
+
+    Task task = new Task();
+    task.setId(taskId);
+    task.setProcessId(workflowRequest.getProcessId());
+    task.setTaskDefinition(tasksDefinition);
+
+    CreateTaskRequest createTaskRequest = new CreateTaskRequest();
+    createTaskRequest.setTask(task);
+    this.kuFlowSyncActivities.createTask(createTaskRequest);
+
+    // Claim task by the worker because is a valid candidate.
+    // We could also claim it by specifying the "owner" in the above creation call.
+    // We use the same application for the worker and for the robot.
+    ClaimTaskRequest claimTaskRequest = new ClaimTaskRequest();
+    claimTaskRequest.setTaskId(taskId);
+    this.kuFlowSyncActivities.claimTask(claimTaskRequest);
+
+    // Executes the Temporal activity to run the robot.
+    ExecuteUIVisionMacroRequest executeUIVisionMacroRequest = new ExecuteUIVisionMacroRequest();
+    executeUIVisionMacroRequest.setTaskId(taskId);
+    this.uiVisionActivities.executeUIVisionMacro(executeUIVisionMacroRequest);
+
+    // Complete the task.
+    CompleteTaskRequest completeTaskRequest = new CompleteTaskRequest();
+    completeTaskRequest.setTaskId(taskId);
+    this.kuFlowSyncActivities.completeTask(completeTaskRequest);
+}
+```
 
 The final step with the code is including some imports needed for this tutorial using some feature of your IDE (like pressing SHIFT+ ALT + O in Visual Studio Code).
 
