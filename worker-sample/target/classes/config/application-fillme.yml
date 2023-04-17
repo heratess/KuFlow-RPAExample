@@ -21,12 +21,12 @@ kuflow:
 
       # A directory where the robot can set its logs.
       # Example: /home/user/logs
-      log-directory: C:\\Users\\heratess\\Documents\\Kuflow\\APPS\\UIVision app\\worker-sample\\etc\\logs
+      log-directory: C:\\KUFLOW\\PUBLICS\\KuFlow-RPAExample\\worker-sample\\etc\\logs
 
       # Path to the UI.VISION autorun html
       # Example: /home/user/ui.vision.html
       # See in: kuflow-samples-temporal-uivision-spring/etc/autostarthtml/ui.vision.html
-      auto-run-html: C:\\Users\\heratess\\Documents\\Kuflow\\APPS\\UIVision app\\worker-sample\\etc\\autostarthtml\\ui.vision.html
+      auto-run-html: C:\\KUFLOW\\PUBLICS\\KuFlow-RPAExample\\worker-sample\\etc\\autostarthtml\\ui.vision.html
 
       # UI.Vision macro to run
       # Example: KuFlowScreenshot.json
